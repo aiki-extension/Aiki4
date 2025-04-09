@@ -1,18 +1,17 @@
+import Popup from "./Pages/Popup.svelte";
+import Settings from "./Pages/Settings.svelte";
+import { getTheme, drawTheme } from "./util/themes";
 
-import App from "./App.svelte";
-import { getTheme, drawTheme } from "./util/themes"
-
-//This controls our theme!
-const app = async ()=> {
-  // let theme = await getTheme();
+const app = async () => {
   await drawTheme();
-  return new App({
-    target: document.body,
-  });
-}
 
-// const app = new App({
-//         target: document.body,
-//       });
+  const page = new URLSearchParams(window.location.search).get("page");
+
+  if (page === "settings") {
+    return new Settings({ target: document.body });
+  } else {
+    return new Popup({ target: document.body });
+  }
+};
 
 export default app();

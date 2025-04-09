@@ -25,7 +25,7 @@ async function installationSetup() {
   storage.clearStorage();
   storage.stats.init();
   storage.operatingHours.init();
-  setTheme("light");
+  setTheme("dark");
   storage.shouldRedirect.set(true);
   storage.redirection.toggle();
   storage.list.set([]);

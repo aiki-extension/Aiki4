@@ -21,8 +21,8 @@
   $: user = "";
   $: userIsRegistered = false;
 
-  const port = browser.extension.connect({
-    name: "Settings Communication",
+  const port = browser.runtime.connect({
+  name: "Settings Communication"
   });
 </script>
 

@@ -18,8 +18,8 @@
   import ProcTimeLeft from "./Components/Popup/ProcTimeLeft.svelte";
   import ExtraLearningTime from "./Components/Popup/ExtraLearningTime.svelte";
 
-  const port = browser.extension.connect({
-    name: "Popup Communication",
+  const port = browser.runtime.connect({
+  name: "Popup Communication",
   });
 
   let siteName = "";

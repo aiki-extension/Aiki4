@@ -1,40 +1,35 @@
-  {
-    "manifest_version": 3,
-    "name": "Aiki³ Phase 2",
-    "description": "Phase 2 of the Aiki³ research project.",
-    "version": "2.0.0",
-    "icons": {
-      "128": "/images/AikiLogo.png"
-    },
-    "permissions": [
-      "storage",
-      "tabs",
-      "windows",
-      "<all_urls>",
-      "webNavigation"
-    ],
-    "background": {
-      "scripts": ["build/background.js"],
-      "persistent": true
-    },
-    "browser_action": {
-      "default_title": "Aiki",
-      "default_popup": "index.html?page=popup",
-      "default_icon": "/images/AikiLogo.png"
-    },
-    
-    "content_scripts" : [
-      {
-        "matches" : ["<all_urls>"],
-        "css": ["/build/aikiInjectedStyle.css"],
-        "js": ["/build/injection.js"]
-      }
-    ],
-
-    "web_accessible_resources": ["images/AikiLogo.png"] ,
- 
-
-    "content_security_policy":"script-src 'self' 'unsafe-eval' https://maps.googleapis.com; object-src 'self'",
-
-    "options_page": "/index.html?page=settings"
-  }
+{
+  "manifest_version": 3,
+  "name": "Aiki³ Phase 2",
+  "description": "Phase 2 of the Aiki³ research project.",
+  "version": "2.0.0",
+  "icons": {
+    "128": "images/AikiLogo.png"
+  },
+  "permissions": ["storage", "tabs", "windows", "<all_urls>", "webNavigation"],
+  "background": {
+    "service_worker": "build/background.js"
+  },
+  "action": {
+    "default_title": "Aiki",
+    "default_popup": "index.html?page=popup",
+    "default_icon": "images/AikiLogo.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["build/injection.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["images/AikiLogo.png"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self';"
+  },
+  "options_page": "index.html?page=settings"
+}
